@@ -28,18 +28,19 @@ public class ClockHand {
     // Sử dụng chúng như thế nào?
     // Ta tạo ra một thực thể riêng biệt, khi sử dụng, ta chỉ cần tạo ra 3 cây kim khác nhau
     // thay vì hẳn một đồng hồ 24 giờ, nếu như một ngày không phải 24 giờ thì sao, một quy luật
-    // khác thì sao, ta chỉ cần tạo ra 3 cây kim và cho chúng các giới hạn. -> Encapsulation
+    // khác thì sao, ta chỉ cần tạo ra 3 cây kim và cho chúng các giới hạn. -> Reusability + Modularity
 
-    // Ta phân rã chúng ở khi tạo ra một instance cụ thể, nhưng ở Class, ta gom chung nó lại để
-    // thực hiện một hành động cụ thể.
-
-    // Đằng sau những hành động ta chính là một chương trình được xây dựng từ các đối tượng nhỏ
-    // riêng biệt nhưng hoạt động cùng nhau.
+    // Về mặt Object ta phân rã chúng ở khi tạo ra một instance cụ thể, nhưng ở Class, ta gom chung nó lại để
+    // thực hiện một hành động cụ thể. Có nghĩa là Object có các hành vi như nhau, nhưng quy luật trạng thái
+    // giữa chúng là khác nhau.
 
     // Clock Program
     // ├─ seconds (ClockHand) Đối tượng nhỏ
     // ├─ minutes (ClockHand) Đối tượng nhỏ
     // └─ hours   (ClockHand) Đối tượng nhỏ
+
+    // Từ đây ta có thể kết luận, một chương trình có thể được tạo ra từ các đối tượng, mỗi đối tượng có nhiệm
+    // vụ riêng và phối hợp cùng nhau để tạo ra một hệ thống hoàn chỉnh.
     
     // Tăng giá trị của kim lên 1
     // Giấu logic bên trong
