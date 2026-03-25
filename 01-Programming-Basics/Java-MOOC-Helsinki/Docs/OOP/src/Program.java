@@ -1,10 +1,9 @@
 public class Program {
   public static void main(String[] args) {
-    Clock clock = new Clock();
+    int a = 10;
+    Integer b = 10;
 
-    while (true) {
-      System.out.println(clock);
-      clock.advance();
-    }
+    System.out.println(b.equals(a));
+    System.out.println(b == a);
   }
 }
