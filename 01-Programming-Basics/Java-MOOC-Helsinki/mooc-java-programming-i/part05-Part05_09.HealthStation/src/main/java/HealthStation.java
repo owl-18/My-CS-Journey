@@ -2,7 +2,7 @@ public class HealthStation {
   private int count = 0;
 
   public int weigh(Person person) {
-    this.count++;
+    this.count++; // side effect
     return person.getWeight();
   }
 
