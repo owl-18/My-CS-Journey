@@ -82,15 +82,3 @@ Maven có 3 vai trò cốt lõi mà nó đảm nhiệm:
 > [!NOTE]
 > Các phase trong Maven chay theo thứ tự cộng dồn, nếu ta chạy `mvn íntall` nó sẽ chạy tuần tự như sau:
 > `validate` $\rightarrow$ `compile` $\rightarrow$ `test` $\rightarrow$ `package` $\rightarrow$ `verify` $\rightarrow$ `install`
-
-### `pom.xml` là gì?
-
-**POM** là viết tắt của Project Ojbect Model. Đây là một file XML chứa toàn bộ linh hồn của dự án Maven, bao gồm:
-
-- Tên dự án, phiên bản (tag `modelVersion`, tag `version`)
-- Danh sách thư viện cần dùng (tag `dependencies`), trong tag này còn có 3 yếu tố là `Maven Coordinates` để định danh dự án, trong đó:
-  - `groupId`
-  - `artifactId`
-  - `version`
-  - `scope`
-  - `packaging`
