@@ -28,8 +28,10 @@ Mỗi chuỗi luôn có 2 vạch đen và hai vạch trắng khác nhau với đ
 
 Ví dụ, đôi giày **Sauconny Peregrine 14** có mã vạch như sau:
 
-> ![Sauconny Peregrine 14](sypply-chain-parser/docs/domain-knowledge/resources/barcode_saucony_peregrine_14.jpeg)
+> ![Saucony Peregrine 14](../resources/barcode_saucony_peregrine_14.jpeg)
+>
 > Dịch tương ứng sẽ là
+>
 > 101 0011001 0001011 011001 0001101 0011001 0001011 01010 1110100 1100110 100100 1010000 1001110 1110010 101
 
 ## Cấu tạo
