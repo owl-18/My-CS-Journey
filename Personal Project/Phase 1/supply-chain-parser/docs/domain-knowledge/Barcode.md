@@ -36,6 +36,57 @@ Ví dụ, đôi giày **Sauconny Peregrine 14** có mã vạch như sau:
 
 ## Cấu tạo
 
+Tôi sẽ sử dụng chuẩn phổ biến là EAN-13 để phân tích cấu tạo của chúng.
+
+- Mã quốc gia (3 số đầu): được quy định bởi tổ chức GS1 tại quốc gia đó cung cấp cho từng nhà sản xuất cụ thể. Mỗi công ty sẽ có một mã riêng không trùng lặp.
+
+- Mã doanh nghiệp (4 đến 6 số tiếp theo): do tổ chức GS1 tại quốc gia đó cấp cho từng nhà sản xuất cụ thể. Mỗi công ty sẽ có một mã công ty riêng biệt không trùng lặp
+
+- Mã mặt hàng (3 đến 5 số tiếp theo): do chính doanh nghiệp tự quy định cho từng sản phẩm của mình. Mỗi loại sản phẩm, kích cỡ hay hương vị khác nhau sẽ có một mã riêng để quản lý tồn kho.
+
+- Số kiểm tra (1 số cuối cùng): Dùng để kiểm tra thông qua thuật toán modulo 10 - xem thêm tại mục tiếp theo.
+
 Về tổng quan, mã vạch có các vạch dài và vạch ngắn, nhưng nó có điểm chung là vạch dài nằm ở đầu, giữa và cuối, các vạch này gọi gọi là vạch bảo vệ.
 
-Vạch giữa còn có tính năng khác là chia mã vạch làm hai nửa
+Vạch giữa còn có tính năng khác là chia mã vạch làm hai nửa - Central Guard Bars
+
+Vạch phân cách là hai vạch mảnh dài hơn đầu và vạch giữa, giúp máy quét xác định điểm bắt đầu, điểm kết thúc và tâm mã vạch - Normal Guard Bars.
+
+## Tính hợp lệ của dãy số
+
+Tôi sẽ sử dụng chuẩn phổ biến là EAN-13 sử dụng thuật toán modulo 10 để xác định.
+
+Số thứ 13 trong dãy mã vạch còn được gọi là số kiểm tra, con số này được dựa trên nguyên tăc sau.
+
+Bước 1: cộng tất cả các vị trí ở số lẻ - bắt đầu tính từ số 1.
+
+Bước 2: cộng tất cả các chữ số ở vị trí chẵn rồi nhân với 3 - không tính số kiểm tra.
+
+Bước 3: Tính tổng hai của hai kết quả trên.
+
+Bước 4: Lấy số dư của S khi chia sư cho 10
+
+Bước 5: Kết quả chia dư sẽ có hai trường hợp như sau.
+
+- Nếu kết quả chia dư trước bằng 0, thì số thứ 13 phải bằng 0
+
+- Nếu kết quả chia dư khác 0, thì số kiểm tra sẽ bằng 10 - kết quả chia dư.
+
+> [!CAUTION]
+> Thuật toán Modulo 10 chỉ có nhiệm vụ phát hiện lỗi nhập liệu/quét lỗi.
+
+## Thông tin thêm
+
+- Mỗi loạn hàng hóa chỉ có một dãy số duy nhất và ngược lại, mỗi dãy số chỉ đại diện cho một loại hàng hóa.
+
+- Không mang thông tin đặc điểm của sản phẩm, nó không chữa thông tin gì về giá cả, màu sắc hay chất liệu mà chỉ là ánh xạ để giúp máy tính truy xuất cơ sở dữ liệu.
+
+- Hệ thống GS1 là tổ chức toàn cầu chịu trách nhiệm cấp và quản lý mã vạch và số mã vạch để tránh trùng lặp và rủi ro pháp lý.
+
+- Xác xuất trùng lặp là 0%, vì GS1 sẽ linh hoạt độ dài. Nếu doanh nghiệp có ít sản phẩm, thì có thể mã sẽ thu gọn còn 2 số. Nếu doanh nghiệp lớn thì sẽ được cấp 4 số để có quỹ sản phẩm khổng lồ.
+
+- Theo quy định mới nhất của GS1 (từ năm 2019), đối với hầu hết các mặt hàng tiêu dùng, một khi mã GTIN đã được cấp thì không được phép tái sử dụng nữa để tránh xung đột dữ liệu trong thương mại điện tử vĩnh viễn.
+
+- Tiền tố được GS1 cung cấp phải đóng tiền để sử dụng, nếu tự ý lấy mã, công ty sẽ bị phạt vì vi phạm sở hữu trí tuệ và gia lận thương mại.
+
+- Có hàng triệu mã đang tồn tại ngoài kia còn có tên gọi là GTIN (Global Trade Item Number).
