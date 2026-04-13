@@ -11,24 +11,32 @@ public class PaymentTerminal {
     this.heartyMeals = 0;
   }
 
+  public void addMoneyToCard(PaymentCard card, double sum) {
+    if (sum > 0) {
+      card.addMoney(sum);
+      this.money += sum;
+    }
+  }
+
   public double eatAffordably(double payment) {
     // an affordable meal costs 2.50 euros
     // increase the amount of cash by the price of an affordable mean and return the change
     // if the payment parameter is not large enough, no meal is sold and the method should return
     // the whole payment
-    if (payment >= 2.50) {
+    double costAffordably = 2.50;
+    if (payment >= costAffordably) {
       ++affordableMeals;
-      this.money += 2.50;
-      return payment - 2.50;
+      payment -= costAffordably;
+      this.money += costAffordably;
+      return payment;
     }
     return payment;
   }
 
   public boolean eatAffordably(PaymentCard card) {
-    if (card.balance() >= 2.50) {
+    double costAffordably = 2.50;
+    if (card.takeMoney(costAffordably)) {
       ++affordableMeals;
-      this.money += 2.50;
-      card.takeMoney(2.50);
       return true;
     }
     return false;
@@ -39,25 +47,29 @@ public class PaymentTerminal {
     // increase the amount of cash by the price of a hearty mean and return the change
     // if the payment parameter is not large enough, no meal is sold and the method should return
     // the whole payment
-    if (payment >= 4.30) {
+    double costHeartily = 4.30;
+    if (payment >= costHeartily) {
       ++heartyMeals;
-      this.money += 4.30;
-      return payment - 4.30;
+      payment -= costHeartily;
+      this.money += costHeartily;
+      return payment;
     }
     return payment;
   }
 
   public boolean eatHeartily(PaymentCard card) {
-    if (card.balance() >= 4.30) {
-      ++affordableMeals;
-      this.money += 4.30;
-      card.takeMoney(4.30);
+    // a hearty meal costs 4.30 euros
+    // increase the amount of cash by the price of a hearty mean and return the change
+    // if the payment parameter is not large enough, no meal is sold and the method should return
+    // the whole payment
+    double costHeartily = 4.30;
+    if (card.takeMoney(costHeartily)) {
+      ++heartyMeals;
       return true;
     }
     return false;
   }
 
-  @Override
   public String toString() {
     return "money: "
         + money
